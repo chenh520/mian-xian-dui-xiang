@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		*{margin: 0px;padding: 0px;}
+			#body{
+				height: 100vh;
+			/*	background: red;*/
+			}
+			#img{
+				position: absolute;left:0px;top:0px;
+			}
+		</style>
+	</head>
+	<body id="body">
+		<img src="img/拖拽.jpg"/ id="img">
+	</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	var oImg=document.getElementById("img")
+	var oBody=document.getElementById("#body")
+	$("#img").mousedown(function(event){
+		
+		var event=event||window.event;
+		var l=event.clientX-oImg.offsetLeft;
+		var t=event.clientY-oImg.offsetTop;
+		document.onmousemove=function(event){
+			console.log(l,t)
+			var event=event||window.event;
+			var y=event.clientX-l;
+			var x=event.clientY-t;
+//			if(x<=0)x=0
+//			if(y<=0)y=0
+//			if(x >= oBody.clientWidth - oImg.offsetWidth) x = oBody.clientWidth - oImg.offsetWidth;
+//			if(y >= oBody.clientHeight - oImg.offsetHeight) y = oBody.clientHeight - oImg.offsetHeight;
+			$("#img").css("left",y)
+			$("#img").css("top",x)
+		}
+		document.onmouseup=function(){
+			document.onmousemove=null
+		}
+	})
+//	function Move(){
+//		this.ele="<img src='img/拖拽.jpg'/ >"
+//		this.ele.addClass("img")
+//		this.ele.append("body")
+//		
+//	}
+//	Move.prototype.drag=function(){
+//		var aa=this
+//		this.ele.mousedown(function(e){
+//			var l=e.offsetX
+//			var t=e.offsetY
+//			alert(aass)
+//			$("#body").mouseover(function(e){
+//				aa.ele.css({
+//					left:e.clientX-l,
+//					top:e.clientY-t
+//				})
+//			})
+//		})
+//	}
+//	new Move().drag()
+</script>

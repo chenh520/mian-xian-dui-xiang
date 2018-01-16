@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0px ;padding: 0px;}
+			body{
+				width: 100%;
+				height: 100vh;
+				background: url(img/bg.jpg);
+				background-size:100%;
+			}
+			.xh{
+				width: 45px;
+				height: 40px;
+				background: url(img/1.jpg);
+				background-size: 100% 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.snow {
+				width: 45px;
+				height: 40px;
+				background: url(img/snow.gif);
+				background-size: 100% 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		</style>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/snow-0.0.1.js"></script>
+<script type="text/javascript">
+	function FireWorm(){
+		this.ele=$("<div></div>")
+		this.ele.addClass("xh")
+		this.ele.appendTo("body")
+		
+	}
+	FireWorm.prototype.move=function(){
+		var x=Math.random()*($("body").width()-100)
+			var y=Math.random()*($("body").height()-100)
+			var bf=this
+			this.ele.animate({
+				left:x,
+				top:y
+			},1000,function(){
+				bf.move()
+			})
+	}
+//	new FireWorm().move()
+	setInterval(function(){
+		new FireWorm().move()
+	},1000)
+	setInterval(function(){
+		new Snow().fall()
+	},300)
+</script>
